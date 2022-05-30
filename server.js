@@ -2,6 +2,7 @@
 
 const express = require("express");
 const server = express();
+const login = require("./routes/login");
 
 const signUp = require("./routes/signUp");
 
@@ -15,13 +16,12 @@ server.use(staticHandler);
 
 // allow your server to read cookies from incoming requests. It will parse the cookie into an object, then attach it to the request object for you to use
 const cookieParser = require("cookie-parser");
-server.use(cookieParser());
+server.use(cookieParser(process.env.COOKIE_SECRET));
 
 // Routes
 
-server.get("/", (request, response) => {
-  response.send("Home Page");
-});
+server.get("/", login.get);
+server.post("/", login.post);
 
 // connect post and get function to the server.
 server.get("/sign-up", signUp.get);
