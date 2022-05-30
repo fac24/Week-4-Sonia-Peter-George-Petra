@@ -17,4 +17,4 @@ function layout(title, content) {
   return html;
 }
 
-module.exports = { layout };
+module.exports = layout;
