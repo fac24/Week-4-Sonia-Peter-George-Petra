@@ -3,10 +3,10 @@ const auth = require("../auth.js");
 const layout = require("../layout.js");
 
 function get(request, response) {
-  const form = `
+  const form = /*html*/ `
     <h2>Create a new account</h2>
     <div>
-        <a href="./login.js">Back to login</a>
+        <a href="/">Back to login</a>
         <a href="">Sign Up with GitHub</a>
     </div>
     <form action="sign-up" method="POST">
