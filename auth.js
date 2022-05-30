@@ -2,11 +2,18 @@ const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 const model = require("./database/model");
 
+const COOKIE_OPTIONS = {
+    httpOnly: true,
+    // maxAge: 600000,
+    sameSite: "strict",
+    signed: true,
+  };
+
 async function verifyUser(email, password) {
     const user = await model.getUser(email);
     if(user) {
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if(passwordMatch) {
+        const passwordsMatch = await bcrypt.compare(password, user.password);
+        if(passwordsMatch) {
             return user
         } else {
             console.error("Cannot verify password.")
@@ -25,5 +32,6 @@ async function createSession(user) {
 
 module.exports = {
     verifyUser,
-    createSession
+    createSession,
+    COOKIE_OPTIONS
 }
