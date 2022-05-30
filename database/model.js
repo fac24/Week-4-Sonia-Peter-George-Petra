@@ -8,12 +8,12 @@ async function getUser(email) {
     return user.rows[0]; 
 }
 
-async function createSession() {
+async function createSession(sessionId, data) {
     const INSERT_SESSION = `
     INSERT INTO sessions(sid, data) VALUES ($1, $2)
     RETURNING sid;
     `
-    const sid = await db.query(INSERT_SESSION, [sessionId, dataObj])
+    const sid = await db.query(INSERT_SESSION, [sessionId, data])
     return sid.rows[0]['sid'];
 }
 
