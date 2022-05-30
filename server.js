@@ -3,6 +3,8 @@
 const express = require("express");
 const server = express();
 
+const signUp = require("./routes/signUp");
+
 // Body parser middleware to parse request body
 const bodyParser = express.urlencoded({ extended: false });
 server.use(bodyParser);
@@ -20,6 +22,10 @@ server.use(cookieParser());
 server.get("/", (request, response) => {
   response.send("Home Page");
 });
+
+// connect post and get function to the server.
+server.get("/sign-up", signUp.get);
+server.post("/sign-up", signUp.post);
 
 // assign port to deployed or local port
 const PORT = process.env.PORT || 3000;

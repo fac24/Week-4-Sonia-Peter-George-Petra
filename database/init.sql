@@ -1,7 +1,7 @@
 BEGIN;
 
 -- Remove existing tables and repopulate db when script runs
-DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS users, sessions, posts CASCADE;
 
 CREATE TABLE sessions (
     sid CHAR(24) UNIQUE NOT NULL PRIMARY KEY,
@@ -14,13 +14,13 @@ CREATE TABLE users (
     password TEXT NOT NULL
 );
 
-CREATE TABLE posts {
+CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL,
     recipe TEXT NOT NULL, 
     joke TEXT NOT NULL, 
-    photo BLOB 
-}
+    photo BYTEA 
+);
 
 -- INSERT INTO users (name, email) VALUES (
 --     'Cheese Lover',
