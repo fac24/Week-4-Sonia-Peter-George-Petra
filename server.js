@@ -11,6 +11,10 @@ server.use(bodyParser);
 const staticHandler = express.static("public");
 server.use(staticHandler);
 
+// allow your server to read cookies from incoming requests. It will parse the cookie into an object, then attach it to the request object for you to use
+const cookieParser = require("cookie-parser");
+server.use(cookieParser());
+
 // Routes
 
 server.get("/", (request, response) => {

@@ -20,7 +20,10 @@
   },
   "homepage": "https://github.com/fac24/Week-4-Sonia-Peter-George-Petra#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
     "express": "^4.18.1",
+    "node-fetch": "^3.2.4",
     "pg": "^8.7.3"
   },
   "devDependencies": {
