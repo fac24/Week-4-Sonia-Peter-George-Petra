@@ -2,13 +2,16 @@ const auth = require("../auth.js");
 const layout = require("../layout.js");
 const model = require("../database/model.js");
 
+const fetch = require("node-fetch");
+
+const client_secret = process.env.CLIENT_SECRET;
 const client_id = process.env.CLIENT_ID;
 const LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${client_id}`;
 
 function get(request, response) {
-    const html = layout(
-        "Login",
-        /*html*/ `
+  const html = layout(
+    "Login",
+    /*html*/ `
         <h2>Log in</h2>
         <form action="login" method="POST">
         <div>
@@ -27,22 +30,21 @@ function get(request, response) {
         </div>
         </form>
       `
-      );
-      response.send(html);
+  );
+  response.send(html);
 }
 
 async function post(request, response) {
-    const {email, password} = request.body;
-    const user = await auth
-    .verifyUser(email, password)
-    if(user) {
-        const sid = auth.createSession(user);
-        response.cookie("sid", sid, auth.COOKIE_OPTIONS); 
-        response.redirect("/posts")
-    }
+  const { email, password } = request.body;
+  const user = await auth.verifyUser(email, password);
+  if (user) {
+    const sid = auth.createSession(user);
+    response.cookie("sid", sid, auth.COOKIE_OPTIONS);
+    response.redirect("/posts");
+  }
 }
 
 module.exports = {
-    post,
-    get
-}
+  post,
+  get,
+};
