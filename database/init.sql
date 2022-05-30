@@ -19,7 +19,7 @@ CREATE TABLE posts (
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL,
     recipe TEXT NOT NULL, 
     joke TEXT NOT NULL, 
-    photo BYTEA
+    photo BYTEA 
 );
 
 -- INSERT INTO users (name, email) VALUES (
