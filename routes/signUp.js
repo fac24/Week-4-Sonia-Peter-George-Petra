@@ -26,16 +26,16 @@ function get(request, response) {
   response.send(layout("Sign Up", form));
 }
 
-//async function post(request, response) {
-//...
-//const user = await auth.createUser(email, password);
-// #### Make a session here to?
-//response.redirect("/posts");
-// }
-
-function post(request, response, next) {
+// this will add a user to the database.
+async function post(request, response) {
   const { email, password } = request.body;
-  console.log(username);
+
+  const user = await auth.createUser(email, password);
+  const cookie = response.cookie("sid", user, auth.COOKIE_OPTIONS);
+  // directing this back to the path
+  response.redirect("/posts");
+  //exits the functionality
+  return cookie;
 }
 
 module.exports = { get, post };

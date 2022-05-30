@@ -11,3 +11,5 @@ async function createUser(email, password) {
   const user = DBInsert.rows[0];
   return user;
 }
+
+module.exports = createUser;
