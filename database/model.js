@@ -39,6 +39,15 @@ async function getPosts() {
   return posts.rows;
 }
 
+/*
+logoout
+*/
+
+async function deleteSession(sid) {
+  const DELETE_SESSION = `DELETE FROM sessions WHERE sid=$1`;
+  return db.query(DELETE_SESSION, [sid]);
+}
+
 // async function getSession(sessionId) {
 //   const SELECT_SESSION = `
 //     SELECT sid, data FROM sessions WHERE sid=$1
