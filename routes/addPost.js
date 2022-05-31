@@ -22,6 +22,8 @@ function get(request, response) {
 
       <button type="submit" aria-label="click me to verify">Submit</button>
     </form>
+
+    <a href="/posts">View all of our top-notch recipes</a>
   `
   );
   response.send(html);

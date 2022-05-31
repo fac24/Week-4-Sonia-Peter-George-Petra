@@ -28,6 +28,24 @@ async function createSession(sessionId, data) {
   return sid.rows[0]["sid"];
 }
 
+async function getPosts() {
+  const SELECT_POSTS = `
+  SELECT users.email, posts.recipe, posts.joke, posts.photo, posts.user_id 
+  FROM users
+  INNER JOIN posts 
+  ON users.id = posts.user_id
+  `;
+  const posts = await db.query(SELECT_POSTS);
+  return posts.rows;
+}
+
+// async function getSession(sessionId) {
+//   const SELECT_SESSION = `
+//     SELECT sid, data FROM sessions WHERE sid=$1
+//   `;
+//   const sid = await db.query(SELECT_SESSION, [sessionId])
+//   return sid.rows[0];
+
 async function getSession(sessionId) {
   const GET_SESSION = /*sql*/ `
     SELECT data FROM sessions WHERE sid = $1
@@ -71,8 +89,9 @@ async function deletePost(post_id, user_id) {
 module.exports = {
   getUser,
   createSession,
-  getSession,
   createUser,
-  addPost,
   deletePost,
+  getPosts,
+  getSession,
+  addPost,
 };

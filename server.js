@@ -6,6 +6,7 @@ const login = require("./routes/login.js");
 const addPost = require("./routes/addPost.js");
 const deletePost = require("./routes/deletePost.js");
 const authenticate = require("./routes/authenticate.js");
+const posts = require("./routes/posts.js")
 
 const signUp = require("./routes/signUp");
 
@@ -36,6 +37,8 @@ server.post("/add-post", addPost.post);
 server.post("/delete-post", deletePost.post);
 
 server.get("/authenticate", authenticate.get);
+
+server.get("/posts", posts.get)
 
 // assign port to deployed or local port
 const PORT = process.env.PORT || 3000;
