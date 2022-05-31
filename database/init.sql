@@ -17,8 +17,9 @@ CREATE TABLE users (
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL,
-    recipe TEXT NOT NULL, 
-    joke TEXT NOT NULL, 
+    dish TEXT NOT NULL,
+    recipe TEXT, 
+    joke TEXT, 
     photo BYTEA 
 );
 

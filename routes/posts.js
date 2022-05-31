@@ -8,7 +8,7 @@ async function get(request, response) {
    } else {
         let postsHTML = ""; 
         const sid = request.signedCookies.sid;
-        const userData = model.getSession(sid);
+        const userData = await model.getSession(sid);
 
         posts.map((post) => {
             console.log(post)
