@@ -22,6 +22,16 @@ server.use(staticHandler);
 const cookieParser = require("cookie-parser");
 server.use(cookieParser(process.env.COOKIE_SECRET));
 
+
+// function checkAuth(request, response, next) {
+//   const sid = request.signedCookies.sid;
+//   if(!sid) {
+//     response.status(401).redirect("/")
+//   } else {
+//     next()
+//   }
+// }
+
 // Routes
 
 server.get("/", login.get);
@@ -32,13 +42,13 @@ server.get("/sign-up", signUp.get);
 server.post("/sign-up", signUp.post);
 
 server.get("/add-post", addPost.get);
-server.post("/add-post", addPost.post);
+server.post("/add-post", checkAuth, addPost.post);
 
-server.post("/delete-post", deletePost.post);
+server.post("/delete-post", checkAuth, deletePost.post);
 
 server.get("/authenticate", authenticate.get);
 
-server.get("/posts", posts.get)
+server.get("/posts", checkAuth, posts.get)
 
 // assign port to deployed or local port
 const PORT = process.env.PORT || 3000;
