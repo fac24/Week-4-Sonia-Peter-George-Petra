@@ -28,8 +28,21 @@ async function createSession(sessionId, data) {
   return sid.rows[0]["sid"];
 }
 
+async function getPosts() {
+  const SELECT_POSTS = `
+  SELECT users.email, posts.recipe, posts.joke, posts.photo, posts.user_id 
+  FROM users
+  INNER JOIN posts 
+  ON users.id = posts.user_id
+  `;
+  const posts = await db.query(SELECT_POSTS)
+  return posts.rows
+}
+
+
 module.exports = {
   getUser,
   createSession,
   createUser,
+  getPosts
 };
