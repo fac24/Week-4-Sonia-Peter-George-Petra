@@ -4,7 +4,8 @@ const model = require("../database/model.js");
 async function get(request, response) {
    const posts = await model.getPosts()
    if(posts.length === 0) {
-    return `<p>Be the first one to post!</p>`
+       console.log("post me")
+    response.send("<p>Be the first one to post!</p>")
    } else {
         let postsHTML = ""; 
         const sid = request.signedCookies.sid;
@@ -33,7 +34,7 @@ async function get(request, response) {
             ${deleteButton}
             `.concat(postsHTML);
             });
-           return postsHTML;
+            response.send(postsHTML);
          }
         }
 
