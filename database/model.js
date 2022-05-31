@@ -1,10 +1,10 @@
 const db = require("./connection.js");
 
 async function createUser(email, password) {
-  const INSERT_USER = `
-                        INSERT INTO users (email, password) VALUES ($1, $2)
-                        RETURNING email
-                        `;
+  const INSERT_USER = /*sql*/ `
+    INSERT INTO users (email, password) VALUES ($1, $2)
+    RETURNING id, email
+  `;
   // using an await to to insert new data into the database.
   const DBInsert = await db.query(INSERT_USER, [email, password]);
   // inserting this into new rows and then returning
@@ -28,8 +28,40 @@ async function createSession(sessionId, data) {
   return sid.rows[0]["sid"];
 }
 
+async function getSession(sessionId) {
+  const GET_SESSION = /*sql*/ `
+    SELECT data FROM sessions WHERE sid = $1
+  `;
+  const user = await db.query(GET_SESSION, [sessionId]);
+  // returns {id: user_id, email: useremail}
+  return user.rows[0].data.user;
+}
+
+async function addPost(
+  user_id,
+  dish,
+  recipe = undefined,
+  joke = undefined,
+  photo = undefined
+) {
+  const INSERT_POST = /*sql*/ `
+    INSERT INTO posts (user_id, dish, recipe, joke, photo) VALUES ($1, $2, $3, $4, $5)
+    RETURNING id
+  `;
+  const addedID = await db.query(INSERT_POST, [
+    user_id,
+    dish,
+    recipe,
+    joke,
+    photo,
+  ]);
+  return addedID.rows[0];
+}
+
 module.exports = {
   getUser,
   createSession,
+  getSession,
   createUser,
+  addPost,
 };
