@@ -42,13 +42,13 @@ server.get("/sign-up", signUp.get);
 server.post("/sign-up", signUp.post);
 
 server.get("/add-post", addPost.get);
-server.post("/add-post", checkAuth, addPost.post);
+server.post("/add-post", addPost.post);
 
-server.post("/delete-post", checkAuth, deletePost.post);
+server.post("/delete-post", deletePost.post);
 
 server.get("/authenticate", authenticate.get);
 
-server.get("/posts", checkAuth, posts.get)
+server.get("/posts", posts.get)
 
 // assign port to deployed or local port
 const PORT = process.env.PORT || 3000;
