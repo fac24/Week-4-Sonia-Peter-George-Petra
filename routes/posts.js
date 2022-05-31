@@ -28,6 +28,7 @@ async function get(request, response) {
       postsHTML += `
         <div>
           <p>User: ${post.email}</p>
+          <p>Dish suggestion: ${post.dish}</p>
           <p>recipe: ${post.recipe}</p>
           <p>jokes: ${post.joke}</p>
           <img>food photo: ${post.photo}</img>
