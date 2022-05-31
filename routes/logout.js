@@ -1,6 +1,6 @@
 const { deleteSession } = require("../database/model.js");
 
-function post(req, res, next) {
+async function post(req, res, next) {
   const sid = req.signedCookies.sid;
   deleteSession(sid)
     .then(() => {
