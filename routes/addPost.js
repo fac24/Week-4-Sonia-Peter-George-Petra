@@ -6,7 +6,11 @@ function get(request, response) {
     `Dishboard`,
     /*html*/ `
     <h1>Dishboard</h1>
+    <form action="/log-out" method="POST">
+    <button type="log-out" class="log-out">Log Out</button>
+    <form>
     <form method="POST">
+
       <label for="dish">Dish Name<span aria-hidden="true">*</span></label>
       <input type="text" name="dish" id="dish" aria-label="Enter the name of the dish" aria-describedby="" required />
 
