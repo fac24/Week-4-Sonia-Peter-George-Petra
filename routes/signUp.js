@@ -4,10 +4,11 @@ const layout = require("../layout.js");
 
 function get(request, response) {
   const form = /*html*/ `
-    <h2>Create a new account</h2>
+  <div class="flex-container login-containers">  
+  <h2>Create a new account</h2>
     <div>
-        <a href="/">Back to login</a>
-        <a href="">Sign Up with GitHub</a>
+        <a class="btn" href="/">Back to login</a>
+        <a class="btn" href="">Login Via GitHub</a>
     </div>
     <form action="sign-up" method="POST">
         <label for="email">
@@ -21,7 +22,9 @@ function get(request, response) {
         <input type="password"id="password" name="password" required></input>
         
         <button type="submit" aria-label="click me to verify">submit</button>
-    </form>`;
+    </form>
+    </div>
+    `;
 
   response.send(layout("Sign Up", form));
 }
