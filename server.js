@@ -4,6 +4,7 @@ const express = require("express");
 const server = express();
 const login = require("./routes/login");
 const authenticate = require("./routes/authenticate.js");
+const posts = require("./routes/posts.js")
 
 const signUp = require("./routes/signUp");
 
@@ -29,6 +30,8 @@ server.get("/sign-up", signUp.get);
 server.post("/sign-up", signUp.post);
 
 server.get("/authenticate", authenticate.get);
+
+server.get("/posts", posts.get)
 
 // assign port to deployed or local port
 const PORT = process.env.PORT || 3000;
