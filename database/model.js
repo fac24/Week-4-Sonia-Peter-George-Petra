@@ -79,7 +79,6 @@ async function addPost(
 module.exports = {
   getUser,
   createSession,
-  getSession,
   createUser,
   getPosts,
   getSession,
