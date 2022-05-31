@@ -37,7 +37,7 @@ async function post(request, response) {
   // 2 Add post
   await model.addPost(user.id, form.dish, form[recipeType], form.joke);
   // 3 Redirect to posts
-  response.redirect("/add-post");
+  response.redirect("/posts");
 }
 
 module.exports = { get, post };
