@@ -11,7 +11,7 @@ function get(request, response) {
     "Login",
     /*html*/ `
         <h2>Log in</h2>
-        <form action="login" method="POST">
+        <form method="POST">
         <div>
           <label for="email">Email</label>
           <input type="email" id="email" name="email">
