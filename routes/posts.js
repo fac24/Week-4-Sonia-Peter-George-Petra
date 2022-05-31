@@ -16,7 +16,6 @@ async function get(request, response) {
       let deleteButton = "";
       // if the posts equals the array of objects with data most needed.
       if (post.user_id === userData.id) {
-        console.log("I");
         deleteButton = /*html*/ ` 
           <form action="/delete-post" method="POST">
             <button class="delete-button" name="post_id" value="${post.id}" aria-label="Delete ${post.post}">
@@ -36,7 +35,6 @@ async function get(request, response) {
         </div>
       `;
     });
-    console.log(postsHTML);
     response.send(layout("posts", postsHTML));
   }
 }
