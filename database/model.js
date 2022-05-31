@@ -3,7 +3,7 @@ const db = require("./connection.js");
 async function createUser(email, password) {
   const INSERT_USER = `
                         INSERT INTO users (email, password) VALUES ($1, $2)
-                        RETURNING email
+                        RETURNING email, id
                         `;
   // using an await to to insert new data into the database.
   const DBInsert = await db.query(INSERT_USER, [email, password]);
@@ -39,10 +39,18 @@ async function getPosts() {
   return posts.rows
 }
 
+async function getSession(sessionId) {
+  const SELECT_SESSION = `
+    SELECT sid, data FROM sessions WHERE sid=$1
+  `;
+  const sid = await db.query(SELECT_SESSION, [sessionId])
+  return sid.rows[0];
+}
 
 module.exports = {
   getUser,
   createSession,
   createUser,
-  getPosts
+  getPosts,
+  getSession
 };
