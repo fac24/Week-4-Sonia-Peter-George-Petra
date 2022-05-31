@@ -6,7 +6,7 @@ const login = require("./routes/login.js");
 const addPost = require("./routes/addPost.js");
 const deletePost = require("./routes/deletePost.js");
 const authenticate = require("./routes/authenticate.js");
-const posts = require("./routes/posts.js")
+const posts = require("./routes/posts.js");
 
 const signUp = require("./routes/signUp");
 
@@ -21,7 +21,6 @@ server.use(staticHandler);
 // allow your server to read cookies from incoming requests. It will parse the cookie into an object, then attach it to the request object for you to use
 const cookieParser = require("cookie-parser");
 server.use(cookieParser(process.env.COOKIE_SECRET));
-
 
 // function checkAuth(request, response, next) {
 //   const sid = request.signedCookies.sid;
@@ -48,7 +47,10 @@ server.post("/delete-post", deletePost.post);
 
 server.get("/authenticate", authenticate.get);
 
-server.get("/posts", posts.get)
+server.get("/posts", posts.get);
+
+server.post("/log-out", logout.post);
+server.get("/posts", posts.get);
 
 // assign port to deployed or local port
 const PORT = process.env.PORT || 3000;
