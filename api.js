@@ -1,5 +1,5 @@
 // allows to fetch the data
-const fetch = require("node-fetch");
+const { default: fetch } = require("node-fetch");
 
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
