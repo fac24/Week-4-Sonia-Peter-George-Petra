@@ -2,8 +2,6 @@ const auth = require("../auth.js");
 const layout = require("../layout.js");
 const model = require("../database/model.js");
 
-const fetch = require("node-fetch");
-
 const client_secret = process.env.CLIENT_SECRET;
 const client_id = process.env.CLIENT_ID;
 const LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${client_id}`;
