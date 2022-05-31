@@ -58,10 +58,21 @@ async function addPost(
   return addedID.rows[0];
 }
 
+async function deletePost(post_id, user_id) {
+  const DELETE_POST = `
+      DELETE FROM posts WHERE id = $1 AND id = $2
+      RETURNING  id, user_id, post
+  `;
+
+  const deleteByID = await db.query(DELETE_POST, [post_id, user_id]);
+  return deleteByID.rows[0];
+}
+
 module.exports = {
   getUser,
   createSession,
   getSession,
   createUser,
   addPost,
+  deletePost,
 };

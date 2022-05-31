@@ -4,6 +4,7 @@ const express = require("express");
 const server = express();
 const login = require("./routes/login.js");
 const addPost = require("./routes/addPost.js");
+const deletePost = require("./routes/deletePost.js");
 const authenticate = require("./routes/authenticate.js");
 
 const signUp = require("./routes/signUp");
@@ -31,6 +32,8 @@ server.post("/sign-up", signUp.post);
 
 server.get("/add-post", addPost.get);
 server.post("/add-post", addPost.post);
+
+server.post("/delete-post", deletePost.post);
 
 server.get("/authenticate", authenticate.get);
 
