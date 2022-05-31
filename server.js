@@ -2,7 +2,8 @@
 
 const express = require("express");
 const server = express();
-const login = require("./routes/login");
+const login = require("./routes/login.js");
+const addPost = require("./routes/addPost.js");
 const authenticate = require("./routes/authenticate.js");
 
 const signUp = require("./routes/signUp");
@@ -27,6 +28,9 @@ server.post("/", login.post);
 // connect post and get function to the server.
 server.get("/sign-up", signUp.get);
 server.post("/sign-up", signUp.post);
+
+server.get("/add-post", addPost.get);
+server.post("/add-post", addPost.post);
 
 server.get("/authenticate", authenticate.get);
 
