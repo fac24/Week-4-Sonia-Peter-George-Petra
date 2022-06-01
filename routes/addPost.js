@@ -6,6 +6,7 @@ function get(request, response) {
     `Dishboard`,
     /*html*/ `
     <h1>Dishboard</h1>
+    <div class="flex-container login-container">
     <form method="POST">
 
       <label for="dish">Dish Name<span aria-hidden="true">*</span></label>
@@ -21,10 +22,11 @@ function get(request, response) {
       <label for="joke">Joke</label>
       <input type="text" name="joke" id="joke" aria-label="Enter the joke" aria-describedby="" />
 
-      <button type="submit" aria-label="click me to verify">Submit</button>
+      <button class="btn" type="submit" aria-label="click me to verify">Submit</button>
     </form>
+    </div>
 
-    <a href="/posts">View all of our top-notch recipes</a>
+    <a class="btn" href="/posts">View all of our top-notch recipes</a>
   `
   );
   response.send(html);

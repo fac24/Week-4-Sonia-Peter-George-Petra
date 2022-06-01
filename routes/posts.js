@@ -34,7 +34,7 @@ async function get(request, response) {
       }
 
       postsHTML += `
-        <div>
+        <div class="post-container">
           <p>User: ${post.email}</p>
           <p>Dish: ${post.dish}</p>
           <p>recipe: ${post.recipe}</p>
