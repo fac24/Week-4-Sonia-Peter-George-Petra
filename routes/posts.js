@@ -7,9 +7,17 @@ async function get(request, response) {
     console.log("post me");
     response.send(layout("posts", "<p>Be the first one to post!</p>"));
   } else {
-    let postsHTML = "";
+    let postsHTML = `
+    <form action="/log-out" method="POST">
+    <button type="log-out" class="log-out">Log Out</button>
+    </form>`;
+
     const sid = request.signedCookies.sid;
     const userData = await model.getSession(sid);
+
+    if(!userData) {
+     return response.redirect("/")
+    }
 
     posts.map((post) => {
       console.log(post);
@@ -28,6 +36,7 @@ async function get(request, response) {
       postsHTML += `
         <div class="post-container">
           <p>User: ${post.email}</p>
+          <p>Dish: ${post.dish}</p>
           <p>recipe: ${post.recipe}</p>
           <p>jokes: ${post.joke}</p>
           <img>food photo: ${post.photo}</img>

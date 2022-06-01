@@ -39,6 +39,15 @@ async function getPosts() {
   return posts.rows;
 }
 
+/*
+logoout
+*/
+
+async function deleteSession(sid) {
+  const DELETE_SESSION = `DELETE FROM sessions WHERE sid=$1`;
+  return db.query(DELETE_SESSION, [sid]);
+}
+
 // async function getSession(sessionId) {
 //   const SELECT_SESSION = `
 //     SELECT sid, data FROM sessions WHERE sid=$1
@@ -52,7 +61,10 @@ async function getSession(sessionId) {
   `;
   const user = await db.query(GET_SESSION, [sessionId]);
   // returns {id: user_id, email: useremail}
-  return user.rows[0].data.user;
+  if(user.rows.length !== 0) {
+    return user.rows[0].data.user;
+  } 
+  return undefined;
 }
 
 async function addPost(
@@ -94,4 +106,5 @@ module.exports = {
   getPosts,
   getSession,
   addPost,
+  deleteSession
 };
