@@ -5,29 +5,33 @@ function get(request, response) {
   const html = layout(
     `Dishboard`,
     /*html*/ `
-    <h1>Dishboard</h1>
     <div class="flex-container login-container">
+    <h1>Dishboard</h1>
     
     <form method="POST" action="add-post">
 
       <label for="dish">Dish Name<span aria-hidden="true">*</span></label>
       <input type="text" name="dish" id="dish" aria-label="Enter the name of the dish" aria-describedby="" required />
 
-      <p>Share the recipe</p>
+      <h2>Share the recipe</h2>
+
+        <div>
       <input type="radio" id="recipeUrl" name="recipe" value="recipeURL"/>
       <label for="recipeUrl">URL: <input type="text" name="recipeURL"/></label>
-    
+        </div>
+
+        <div>
       <input type="radio" id="recipeSteps" name="recipe" value="recipeSteps"/>
       <label for="recipeSteps"> Recipe Steps <textarea name="recipeSteps"></textarea></label>
+        </div>
 
       <label for="joke">Joke</label>
       <input type="text" name="joke" id="joke" aria-label="Enter the joke" aria-describedby="" />
 
-      <button class="btn" type="submit" aria-label="click me to verify">Submit</button>
+      <button class="btn" type="submit" aria-label="click me to verify">Submit</button> 
+      <a class="btn" href="/posts">View all the posts</a>
     </form>
     </div>
-
-    <a class="btn" href="/posts">View all of our top-notch recipes</a>
   `
   );
   response.send(html);

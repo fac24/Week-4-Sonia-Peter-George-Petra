@@ -23,9 +23,16 @@ CREATE TABLE posts (
     photo BYTEA 
 );
 
--- INSERT INTO users (name, email) VALUES (
---     'Cheese Lover',
---     'cheese@mascarp.one'
--- );
+INSERT INTO users (email, password) VALUES (
+    '1@1.1',
+    '123'
+);
+
+INSERT INTO posts (user_id, dish, recipe, joke) VALUES (
+    1,
+    'Fish Pie',
+    'http://fishpie.com',
+    'Thought I could put dolphin in my fish pie. Until I noticed I was using all porpoise flour.'
+);
 
 COMMIT;

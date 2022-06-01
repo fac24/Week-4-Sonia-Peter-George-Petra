@@ -3,11 +3,19 @@ const layout = require("../layout.js");
 
 async function get(request, response) {
   const posts = await model.getPosts();
+  const postsPage = `
+  <h1>Dishboard</h1>
+  <div class="flex-container login-container">
+    <h2>Be the first one to post!</h2>
+    <a href="/add-post" class="add-post-link">Share the dish</a>
+  </div>
+  `;
   if (posts.length === 0) {
     console.log("post me");
-    response.send(layout("posts", "<p>Be the first one to post!</p>"));
+    response.send(layout("posts", postsPage));
   } else {
     let postsHTML = `
+    <a href="/add-post" class="add-post-link">Share the dish</a>
     <form action="/log-out" method="POST">
     <button type="log-out" class="log-out">Log Out</button>
     </form>`;
@@ -15,8 +23,8 @@ async function get(request, response) {
     const sid = request.signedCookies.sid;
     const userData = await model.getSession(sid);
 
-    if(!userData) {
-     return response.redirect("/")
+    if (!userData) {
+      return response.redirect("/");
     }
 
     posts.map((post) => {
@@ -32,14 +40,12 @@ async function get(request, response) {
           </form>
         `;
       }
-
       postsHTML += `
         <div class="post-container">
-          <p>User: ${post.email}</p>
-          <p>Dish: ${post.dish}</p>
-          <p>recipe: ${post.recipe}</p>
-          <p>jokes: ${post.joke}</p>
-          <img>food photo: ${post.photo}</img>
+          <p class="">User: ${post.email}</p>
+          <p>Name of the dish: ${post.dish}</p>
+          <p>Recipe Or URL: ${post.recipe}</p>
+          <p>Joke: ${post.joke}</p>
           ${deleteButton}
         </div>
       `;
