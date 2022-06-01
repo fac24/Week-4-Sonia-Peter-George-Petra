@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon -r dotenv/config server.js",
-    "test": "cypress open"
+    "test": "cypress open",
+    "prod": "NODE_ENV=production nodemon -r dotenv/config server.js"
   },
   "repository": {
     "type": "git",
