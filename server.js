@@ -7,6 +7,7 @@ const addPost = require("./routes/addPost.js");
 const deletePost = require("./routes/deletePost.js");
 const authenticate = require("./routes/authenticate.js");
 const posts = require("./routes/posts.js");
+const logout = require("./routes/logout");
 
 const signUp = require("./routes/signUp");
 
@@ -22,14 +23,14 @@ server.use(staticHandler);
 const cookieParser = require("cookie-parser");
 server.use(cookieParser(process.env.COOKIE_SECRET));
 
-// function checkAuth(request, response, next) {
-//   const sid = request.signedCookies.sid;
-//   if(!sid) {
-//     response.status(401).redirect("/")
-//   } else {
-//     next()
-//   }
-// }
+function checkAuth(request, response, next) {
+  const sid = request.signedCookies.sid;
+  if(!sid) {
+    response.status(401).redirect("/")
+  } else {
+    next()
+  }
+}
 
 // Routes
 
@@ -40,17 +41,16 @@ server.post("/", login.post);
 server.get("/sign-up", signUp.get);
 server.post("/sign-up", signUp.post);
 
-server.get("/add-post", addPost.get);
-server.post("/add-post", addPost.post);
+server.get("/add-post", checkAuth, addPost.get);
+server.post("/add-post", checkAuth, addPost.post);
 
-server.post("/delete-post", deletePost.post);
+server.post("/delete-post", checkAuth, deletePost.post);
 
 server.get("/authenticate", authenticate.get);
 
-server.get("/posts", posts.get);
+server.get("/posts", checkAuth, posts.get);
 
-server.post("/log-out", logout.post);
-server.get("/posts", posts.get);
+server.post("/log-out", checkAuth, logout.post);
 
 // assign port to deployed or local port
 const PORT = process.env.PORT || 3000;
