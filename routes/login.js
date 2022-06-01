@@ -12,16 +12,16 @@ function get(request, response) {
     /*html*/ `
       <div class="flex-container login-container">
         <h2>Log in</h2>
-        <form method="POST">
-        
+        <form method="POST" id="login-form">
+        <div>
           <label for="email">Email</label>
           <input type="email" id="email" name="email">
 
           <label for="password">Password</label>
           <input type="password" id="password" name="password">
 
-          <button class="btn">Log in</button>
-          
+          <button class="btn" type="submit">Log in</button>
+          </div>
         </form>
         <span>-----------------</span>
         <a class="btn" href="${LOGIN_URL}">Log in with GitHub</a>
@@ -29,7 +29,7 @@ function get(request, response) {
 
         <div class="flex-container login-container">
         <form action="/sign-up">
-          <button class="btn">Create your account</button>
+          <button class="btn" id="sign-up-link">Create your account</button>
         </form>
         </div>
       `
