@@ -9,6 +9,8 @@ const authenticate = require("./routes/authenticate.js");
 const posts = require("./routes/posts.js");
 const logout = require("./routes/logout");
 
+const layout = require("./layout.js");
+
 const signUp = require("./routes/signUp");
 
 // Body parser middleware to parse request body
@@ -33,7 +35,16 @@ function handleErrors(error, request, response, next) {
   const isProd = process.env.NODE_ENV === "production";
   if (isProd) {
     const message = STATUS_CODES[status];
-    response.send(message);
+    response.send(
+      layout(
+        "ERROR",
+        `
+      ${error.message}
+      <p>Error ${status}-${message}</p> 
+      <a href="/">Back to Login</a>
+      `
+      )
+    );
   } else {
     response.send(`<pre>${error.stack}</pre>`);
   }
@@ -57,8 +68,8 @@ server.post("/", login.post);
 server.get("/sign-up", signUp.get);
 server.post("/sign-up", signUp.post);
 
-server.get("/add-post", addPost.get);
-server.post("/add-post", addPost.post);
+server.get("/add-post", checkAuth, addPost.get);
+server.post("/add-post", cehckAuth, addPost.post);
 
 server.post("/delete-post", checkAuth, deletePost.post);
 
