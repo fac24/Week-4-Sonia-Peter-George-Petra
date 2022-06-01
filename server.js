@@ -26,7 +26,6 @@ server.use(cookieParser(process.env.COOKIE_SECRET));
 const { STATUS_CODES } = require("http");
 
 function handleErrors(error, request, response, next) {
-  console.error(error);
   const status = error.status || 500;
 
   response.status(status);
@@ -58,8 +57,8 @@ server.post("/", login.post);
 server.get("/sign-up", signUp.get);
 server.post("/sign-up", signUp.post);
 
-server.get("/add-post", checkAuth, addPost.get);
-server.post("/add-post", checkAuth, addPost.post);
+server.get("/add-post", addPost.get);
+server.post("/add-post", addPost.post);
 
 server.post("/delete-post", checkAuth, deletePost.post);
 
