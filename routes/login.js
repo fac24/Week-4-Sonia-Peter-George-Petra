@@ -11,7 +11,7 @@ function get(request, response) {
     "Login",
     /*html*/ `
         <h2>Log in</h2>
-        <form method="POST">
+        <form method="POST" id="login-form">
         <div>
           <label for="email">Email</label>
           <input type="email" id="email" name="email">
@@ -19,12 +19,12 @@ function get(request, response) {
           <label for="password">Password</label>
           <input type="password" id="password" name="password">
 
-          <button>Log in</button>
+          <button type="submit">Log in</button>
           <a href="${LOGIN_URL}">Log in with GitHub</a>
         </div>
 
         <div>
-        <a href="/sign-up">Create your account</a>
+        <a href="/sign-up" id="sign-up-link">Create your account</a>
         </div>
         </form>
       `
