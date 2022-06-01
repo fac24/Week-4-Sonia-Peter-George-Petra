@@ -8,6 +8,7 @@ function get(request, response) {
     <h1>Dishboard</h1>
     <div class="flex-container login-container">
     <form method="POST">
+
       <label for="dish">Dish Name<span aria-hidden="true">*</span></label>
       <input type="text" name="dish" id="dish" aria-label="Enter the name of the dish" aria-describedby="" required />
 
