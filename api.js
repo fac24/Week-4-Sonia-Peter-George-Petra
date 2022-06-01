@@ -28,7 +28,6 @@ async function getUser(token) {
 
 function getJson(response) {
   if (!response.ok) {
-    console.log(response);
     const error = new Error("HTTP Error");
     error.status = response.statusCode;
     throw error;
