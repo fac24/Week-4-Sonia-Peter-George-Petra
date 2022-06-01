@@ -15,6 +15,10 @@ async function get(request, response) {
     const sid = request.signedCookies.sid;
     const userData = await model.getSession(sid);
 
+    if(!userData) {
+     return response.redirect("/")
+    }
+
     posts.map((post) => {
       console.log(post);
       let deleteButton = "";
@@ -32,7 +36,7 @@ async function get(request, response) {
       postsHTML += `
         <div>
           <p>User: ${post.email}</p>
-          <p>Dish suggestion: ${post.dish}</p>
+          <p>Dish: ${post.dish}</p>
           <p>recipe: ${post.recipe}</p>
           <p>jokes: ${post.joke}</p>
           <img>food photo: ${post.photo}</img>
