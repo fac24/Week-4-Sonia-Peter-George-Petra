@@ -1,5 +1,6 @@
 :root {
-  font-family: 'Kalam', sans-serif;
+  font-family: "Kalam", sans-serif;
+  color: #032d54;
 }
 
 * {
@@ -12,19 +13,19 @@ body {
   margin-left: auto;
   margin-right: auto;
   padding: 0 1rem;
-  background-color: #004E98;
+  background-color: #004e98;
   justify-content: space-around;
 }
 
 h1 {
-  color: #FF6700;
+  color: #ff6700;
   font-size: 3rem;
-  font-family: 'Bungee Shade', cursive;
+  font-family: "Bungee Shade", cursive;
   margin-bottom: 0;
 }
 
 h2 {
-  font-family: 'Bungee Shade', cursive;
+  font-family: "Bungee Shade", cursive;
   font-size: 3rem;
   color: #003266;
   margin-bottom: 0;
@@ -38,18 +39,18 @@ form {
 }
 
 .btn {
-  background-color: #C0C0C0;
+  background-color: #c0c0c0;
   width: 20rem;
   text-decoration: none;
   font-family: sans-serif;
-  color: #3A6EA5;
+  color: #3a6ea5;
   border: none;
   padding: 1rem 4rem;
   margin-bottom: 1.3rem;
   font-size: 1rem;
   text-align: center;
   cursor: pointer;
-  font-family: 'Kalam', sans-serif;
+  font-family: "Kalam", sans-serif;
   font-weight: 600;
 }
 
@@ -57,13 +58,13 @@ input {
   width: 20rem;
   border: none;
   border-bottom: 2px solid black;
-  background-color: #EBEBEB;
-  font-family: 'Kalam', sans-serif;
-  height: 2.5rem
+  background-color: #ebebeb;
+  font-family: "Kalam", sans-serif;
+  height: 2.5rem;
 }
 
 .banner {
-  background-color: #3A6EA5;
+  background-color: #3a6ea5;
 }
 
 .flex-container {
@@ -77,14 +78,14 @@ input {
 }
 
 .login-container {
-  background-color: #A4BCD2;
+  background-color: #a4bcd2;
   border-radius: 14.5%;
 }
 
 .post-container {
   margin-top: 1rem;
   font-size: 1.3rem;
-  background-color: #869EB4;
+  background-color: #869eb4;
 }
 
 form {
@@ -100,5 +101,50 @@ form {
 hr {
   width: 50%;
   height: 1px;
-  color: #FF6700;
+  color: #ff6700;
+}
+
+.add-post-link {
+  display: block;
+  cursor: pointer;
+  padding: 15px;
+  height: 60px;
+  background-color: #ff6700;
+  color: #004e98;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.3rem;
+  border: #869eb4 2px solid;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-left: auto;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.log-out {
+  display: block;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  height: 60px;
+  background-color: #869eb4;
+  color: #004e98;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.3rem;
+  font-family: "Kalam", sans-serif;
+  border: #ff6700 2px solid;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-left: auto;
+  border-radius: 20px;
+}
+
+.post-container {
+  border-radius: 20px;
+  border: #ff6700 3px solid;
+  padding: 5%;
 }
