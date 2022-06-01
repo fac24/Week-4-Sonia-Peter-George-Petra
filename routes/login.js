@@ -10,6 +10,7 @@ function get(request, response) {
   const html = layout(
     "Login",
     /*html*/ `
+      <div class="flex-container login-container">
         <h2>Log in</h2>
         <form method="POST" id="login-form">
         <div>
@@ -19,14 +20,18 @@ function get(request, response) {
           <label for="password">Password</label>
           <input type="password" id="password" name="password">
 
-          <button type="submit">Log in</button>
-          <a href="${LOGIN_URL}">Log in with GitHub</a>
-        </div>
-
-        <div>
-        <a href="/sign-up" id="sign-up-link">Create your account</a>
-        </div>
+          <button class="btn" type="submit">Log in</button>
+          </div>
         </form>
+        <span>-----------------</span>
+        <a class="btn" href="${LOGIN_URL}">Log in with GitHub</a>
+      </div>
+
+        <div class="flex-container login-container">
+        <form action="/sign-up">
+          <button class="btn" id="sign-up-link">Create your account</button>
+        </form>
+        </div>
       `
   );
   response.send(html);
