@@ -33,17 +33,33 @@ function get(request, response) {
   response.send(html);
 }
 
-async function post(request, response) {
-  const form = request.body;
-  const recipeType = form.recipe;
-  // 1 Get user id
-  console.log(form[recipeType]);
-  const sid = request.signedCookies.sid;
-  const user = await model.getSession(sid);
-  // 2 Add post
-  await model.addPost(user.id, form.dish, form[recipeType], form.joke);
-  // 3 Redirect to posts
-  response.redirect("/posts");
+async function post(request, response, next) {
+  try {
+    const form = request.body;
+    const recipeType = form.recipe;
+    // 1 Get user id
+    console.log(form[recipeType]);
+    const sid = request.signedCookies.sid;
+    if (sid === undefined) {
+      throw new Error("SID");
+    }
+    const user = await model.getSession(sid);
+    if (user === undefined) {
+      throw new Error("user");
+    }
+    // 2 Add post
+    await model.addPost(user.id, form.dish, form[recipeType], form.joke);
+    // 3 Redirect to posts
+    response.redirect("/posts");
+  } catch (error) {
+    const errorMessage = error.message;
+    if (errorMessage === "SID") {
+      error.status = 401;
+    } else if (errorMessage === "user") {
+      error.status = 403;
+    }
+    next(error);
+  }
 }
 
 module.exports = { get, post };
