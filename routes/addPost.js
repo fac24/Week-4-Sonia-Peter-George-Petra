@@ -1,7 +1,7 @@
 const model = require("../database/model.js");
 const layout = require("../layout.js");
 
-function get(request, response) {
+function get(request, response, next) {
   const html = layout(
     `Dishboard`,
     /*html*/ `
@@ -55,8 +55,12 @@ async function post(request, response, next) {
     const errorMessage = error.message;
     if (errorMessage === "SID") {
       error.status = 401;
+      error.message =
+        "<h1>You are unauthorised as you don't have a session ID</h1>";
     } else if (errorMessage === "user") {
       error.status = 403;
+      error.message =
+        "<h1>No user you are Forbidden from going to this page</h1>";
     }
     next(error);
   }
