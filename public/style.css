@@ -54,7 +54,7 @@ form {
   font-weight: 600;
 }
 
-input {
+input[type=text], input[type=email], input[type=password], textarea {
   width: 20rem;
   border: none;
   border-bottom: 2px solid black;
@@ -73,7 +73,7 @@ input {
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  border: black 2px solid;
+  /* border: black 2px solid; */
   padding: 1rem;
 }
 

@@ -8,12 +8,12 @@ function get(request, response) {
 
   <h2>Create a new account</h2>
 
-  <div>
-  <a class="btn" href="/">Back to login</a>
-  <a class="btn" href="">Login Via GitHub</a>
-  </div>
-  
     <form action="sign-up" method="POST">
+      <div class="flex-container">
+        <a class="btn" href="/">Back to login</a>
+        <a class="btn" href="">Login Via GitHub</a>
+    </div>
+
         <label for="email">
             Email<span aria-hidden="true">*</span>
         </label>
