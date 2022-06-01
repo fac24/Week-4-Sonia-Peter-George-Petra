@@ -1,3 +1,7 @@
+before(() => {
+  cy.task("resetDb");
+});
+
 describe("Sign Up actions", () => {
   it("user can navigate to Sign Up page from home page", () => {
     cy.visit("/");
@@ -6,8 +10,8 @@ describe("Sign Up actions", () => {
   });
 
   it("user is redirected to Dishboard page with a stored cookie after sign up", () => {
-    cy.get("form").find("input[name='email']").type("2email@gmail.com");
-    cy.get("form").find("input[name='password']").type("2password1");
+    cy.get("form").find("input[name='email']").type("email@gmail.com");
+    cy.get("form").find("input[name='password']").type("password1");
     cy.get("form").find("button[type='submit']").click();
     cy.url().should("include", "/posts");
   });
@@ -20,8 +24,8 @@ describe("Login actions", () => {
   });
 
   it("user is redirected to Dishboard page with a stored cookie after login", () => {
-    cy.get("form").find("input[name='email']").type("2email@gmail.com");
-    cy.get("form").find("input[name='password']").type("2password1");
+    cy.get("form").find("input[name='email']").type("email@gmail.com");
+    cy.get("form").find("input[name='password']").type("password1");
     cy.get("form").find("button[type='submit']").click();
     cy.url().should("include", "/posts");
   });
@@ -33,25 +37,32 @@ describe("Login actions", () => {
   }); */
 });
 
-after(() => {
-  cy.task("resetDb");
-});
-
 describe("Add post actions", () => {
   it("user can fill out and submit a post, browser redirects to root Dishboard", () => {
     cy.visit("/add-post");
-    cy.get("form").find("input[name='dish']").type("Fish Pie2");
+    cy.get("form").find("input[name='dish']").type("Fish Pie");
     cy.get("form").find("input[value='recipeURL']").check();
-    cy.get("form").find("input[name='recipeURL']").type("http://fishpie.com2");
+    cy.get("form").find("input[name='recipeURL']").type("http://fishpie.com");
     cy.get("form")
       .find("input[name='joke']")
       .type(
-        "Thought I could put dolphin in my fish pie. Until I noticed I was using all porpoise flour.2"
+        "Thought I could put dolphin in my fish pie. Until I noticed I was using all porpoise flour."
       );
-    cy.get("button").click();
+    cy.get("form").find("button[type='submit']").click();
+    cy.url().should("include", "/posts");
   });
 
-  it("browser redirects to root Dishboard", () => {
+  /*   it("browser redirects to root Dishboard", () => {
+    cy.visit("/posts");
+  }); */
+});
+
+describe("Show posts", () => {
+  it("user can see the new post on Dishboard", () => {
+    cy.visit("/posts");
+  });
+
+  it("user can delete their posts", () => {
     cy.visit("/posts");
   });
 });
