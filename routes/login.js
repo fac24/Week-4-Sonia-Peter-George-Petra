@@ -39,6 +39,8 @@ async function post(request, response) {
     const sid = auth.createSession(user);
     response.cookie("sid", sid, auth.COOKIE_OPTIONS);
     response.redirect("/posts");
+  } else {
+    response.redirect("/");
   }
 }
 
