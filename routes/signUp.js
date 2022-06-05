@@ -33,15 +33,31 @@ function get(request, response) {
 }
 
 // this will add a user to the database.
-async function post(request, response) {
-  const { email, password } = request.body;
+async function post(request, response, next) {
+  try {
+    const { email, password } = request.body;
 
-  const user = await auth.createUser(email, password);
-  const cookie = response.cookie("sid", user, auth.COOKIE_OPTIONS);
-  // directing this back to the path
-  response.redirect("/posts");
-  //exits the functionality
-  return cookie;
+    const user = await auth.createUser(email, password);
+    if (user === undefined) {
+      throw new Error("user");
+    }
+    const cookie = response.cookie("sid", user, auth.COOKIE_OPTIONS);
+    if (cookie === undefined) {
+      throw new Error("COOKIE");
+    }
+    // directing this back to the path
+    response.redirect("/posts");
+    //exits the functionality
+    return cookie;
+  } catch (error) {
+    const errorMessage = error.message;
+    if (errorMessage === "SID") {
+      error.status = 401;
+      error.message =
+        "<h1>You are unauthorised as you don't have a session ID</h1>";
+    }
+    next(error);
+  }
 }
 
 module.exports = { get, post };

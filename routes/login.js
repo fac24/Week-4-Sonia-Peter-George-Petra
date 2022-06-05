@@ -6,7 +6,7 @@ const client_secret = process.env.CLIENT_SECRET;
 const client_id = process.env.CLIENT_ID;
 const LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${client_id}`;
 
-function get(request, response) {
+function get(request, response, next) {
   const html = layout(
     "Login",
     /*html*/ `
@@ -36,15 +36,24 @@ function get(request, response) {
   response.send(html);
 }
 
-async function post(request, response) {
-  const { email, password } = request.body;
-  const user = await auth.verifyUser(email, password);
-  if (user) {
-    const sid = auth.createSession(user);
-    response.cookie("sid", sid, auth.COOKIE_OPTIONS);
-    response.redirect("/posts");
-  } else {
-    response.redirect("/");
+async function post(request, response, next) {
+  try {
+    const { email, password } = request.body;
+    const user = await auth.verifyUser(email, password);
+    if (!user) {
+      throw new Error("user");
+    } else {
+      const sid = auth.createSession(user);
+      response.cookie("sid", sid, auth.COOKIE_OPTIONS);
+      response.redirect("/posts");
+    }
+  } catch (error) {
+    const errorMessage = error.message;
+    if (errorMessage === "user") {
+      error.status = 403;
+      error.message = "<h1>Wrong credentials inputted</h1>";
+    }
+    next(error);
   }
 }
 
