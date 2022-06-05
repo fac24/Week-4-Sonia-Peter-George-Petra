@@ -69,7 +69,7 @@ server.get("/sign-up", signUp.get);
 server.post("/sign-up", signUp.post);
 
 server.get("/add-post", checkAuth, addPost.get);
-server.post("/add-post", cehckAuth, addPost.post);
+server.post("/add-post", checkAuth, addPost.post);
 
 server.post("/delete-post", checkAuth, deletePost.post);
 
