@@ -10,10 +10,10 @@ function get(request, response, next) {
   const html = layout(
     "Login",
     /*html*/ `
-      <div class="flex-container login-container">
+    <div class="flex-container login-container">
         <h2>Log in</h2>
+   
         <form method="POST" id="login-form">
-        <div>
           <label for="email">Email</label>
           <input type="email" id="email" name="email">
 
@@ -21,9 +21,8 @@ function get(request, response, next) {
           <input type="password" id="password" name="password">
 
           <button class="btn" type="submit">Log in</button>
-          </div>
         </form>
-        <span>-----------------</span>
+        <hr>
         <a class="btn" href="${LOGIN_URL}">Log in with GitHub</a>
       </div>
 

@@ -40,7 +40,7 @@ async function get(request, response, next) {
             </form>
           `;
         }
-
+        
         postsHTML += `
           <div class="post-container">
             <p>User: ${post.email}</p>
